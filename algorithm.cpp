@@ -1,29 +1,3 @@
-/** \file algorithm.cpp ******************************************************
-*
-* Project: MAXREFDES117#
-* Filename: algorithm.cpp
-* Description: This module calculates the heart rate/SpO2 level
-*
-*
-* --------------------------------------------------------------------
-*
-* This code follows the following naming conventions:
-*
-* char              ch_pmod_value
-* char (array)      s_pmod_s_string[16]
-* float             f_pmod_value
-* int32_t           n_pmod_value
-* int32_t (array)   an_pmod_value[16]
-* int16_t           w_pmod_value
-* int16_t (array)   aw_pmod_value[16]
-* uint16_t          uw_pmod_value
-* uint16_t (array)  auw_pmod_value[16]
-* uint8_t           uch_pmod_value
-* uint8_t (array)   auch_pmod_buffer[16]
-* uint32_t          un_pmod_value
-* int32_t *         pn_pmod_value
-*
-* ------------------------------------------------------------------------- */
 /*******************************************************************************
 * Copyright (C) 2016 Maxim Integrated Products, Inc., All Rights Reserved.
 *
@@ -60,7 +34,7 @@
 #include "algorithm.h"
 #include "arduino.h"
 
-#if defined(ARDUINO_AVR_UNO)
+#if defined(USE_16BIT)
 //Arduino Uno doesn't have enough SRAM to store 100 samples of IR led data and red led data in 32-bit format
 //To solve this problem, 16-bit MSB of the sampled data will be truncated.  Samples become 16-bit data.
 void maxim_heart_rate_and_oxygen_saturation(uint16_t *pun_ir_buffer, int32_t n_ir_buffer_length, uint16_t *pun_red_buffer, int32_t *pn_spo2, int8_t *pch_spo2_valid, 

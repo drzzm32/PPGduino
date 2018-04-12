@@ -1,32 +1,3 @@
-/** \file algorithm.h ******************************************************
-*
-* Project: MAXREFDES117#
-* Filename: algorithm.h
-* Description: This module is the heart rate/SpO2 calculation algorithm header file
-*
-* Revision History:
-*\n 1-18-2016 Rev 01.00 SK Initial release.
-*\n
-*
-* --------------------------------------------------------------------
-*
-* This code follows the following naming conventions:
-*
-*\n char              ch_pmod_value
-*\n char (array)      s_pmod_s_string[16]
-*\n float             f_pmod_value
-*\n int32_t           n_pmod_value
-*\n int32_t (array)   an_pmod_value[16]
-*\n int16_t           w_pmod_value
-*\n int16_t (array)   aw_pmod_value[16]
-*\n uint16_t          uw_pmod_value
-*\n uint16_t (array)  auw_pmod_value[16]
-*\n uint8_t           uch_pmod_value
-*\n uint8_t (array)   auch_pmod_buffer[16]
-*\n uint32_t          un_pmod_value
-*\n int32_t *         pn_pmod_value
-*
-* ------------------------------------------------------------------------- */
 /*******************************************************************************
 * Copyright (C) 2015 Maxim Integrated Products, Inc., All Rights Reserved.
 *
@@ -85,7 +56,7 @@ static  int32_t an_x[ BUFFER_SIZE]; //ir
 static  int32_t an_y[ BUFFER_SIZE]; //red
 
 
-#if defined(ARDUINO_AVR_UNO)
+#if defined(USE_16BIT)
 //Arduino Uno doesn't have enough SRAM to store 100 samples of IR led data and red led data in 32-bit format
 //To solve this problem, 16-bit MSB of the sampled data will be truncated.  Samples become 16-bit data.
 void maxim_heart_rate_and_oxygen_saturation(uint16_t *pun_ir_buffer, int32_t n_ir_buffer_length, uint16_t *pun_red_buffer, int32_t *pn_spo2, int8_t *pch_spo2_valid, int32_t *pn_heart_rate, int8_t *pch_hr_valid);

@@ -20,40 +20,6 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-/* In order to use the library, you need to define SDA_PIN, SCL_PIN,
- * SDA_PORT and SCL_PORT before including this file.  Have a look at
- * http://www.arduino.cc/en/Reference/PortManipulation for finding out
- * which values to use. For example, if you use digital pin 3 (corresponding 
- * to PD3) for SDA and digital pin 13 (corresponding to PB5)
- * for SCL on a standard Arduino,
- * you have to use the following definitions: 
- * #define SDA_PIN 3 
- * #define SDA_PORT PORTD
- * #define SCL_PIN 5
- * #define SCL_PORT PORTB
- *
- * You can also define the following constants (see also below):
- * - I2C_CPUFREQ, when changing CPU clock frequency dynamically
- * - I2C_FASTMODE = 1 meaning that the I2C bus allows speeds up to 400 kHz
- * - I2C_SLOWMODE = 1 meaning that the I2C bus will allow only up to 25 kHz 
- * - I2C_NOINTERRUPT = 1 in order to prohibit interrupts while 
- *   communicating (see below). This can be useful if you use the library 
- *   for communicationg with SMbus devices, which have timeouts.
- *   Note, however, that interrupts are disabled from issuing a start condition
- *   until issuing a stop condition. So use this option with care!
- * - I2C_TIMEOUT = 0..10000 mssec in order to return from the I2C functions
- *   in case of a I2C bus lockup (i.e., SCL constantly low). 0 means no timeout
- */
-
-/* Changelog:
- * Version 1.1: 
- * - removed I2C_CLOCK_STRETCHING
- * - added I2C_TIMEOUT time in msec (0..10000) until timeout or 0 if no timeout
- * - changed i2c_init to return true iff both SDA and SCL are high
- * - changed interrupt disabling so that the previous IRQ state is restored
- * Version 1.0: basic functionality
- */
-
 #ifndef SOFTI2CMASTER_H_
 
 #define SOFTI2DMASTER_H_
@@ -61,19 +27,10 @@
 #include <avr/io.h>
 #include <Arduino.h>
 
-#if defined(ARDUINO_AVR_FLORA8) || defined(ARDUINO_AVR_LILYPAD_USB)
 #define SDA_PORT PORTD
 #define SDA_PIN 1
 #define SCL_PORT PORTD
 #define SCL_PIN 0
-#endif
-
-#ifdef ARDUINO_AVR_UNO
-#define SDA_PORT PORTC
-#define SDA_PIN 4
-#define SCL_PORT PORTC
-#define SCL_PIN 5
-#endif
 
 #define I2C_TIMEOUT 100
 #define I2C_NOINTERRUPT 0

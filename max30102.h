@@ -1,32 +1,3 @@
-/** \file max30102.h ******************************************************
-*
-* Project: MAXREFDES117#
-* Filename: max30102.h
-* Description: This module is an embedded controller driver header file for MAX30102
-*
-* Revision History:
-*\n 1-18-2016 Rev 01.00 GL Initial release.
-*\n
-*
-* --------------------------------------------------------------------
-*
-* This code follows the following naming conventions:
-*
-* char              ch_pmod_value
-* char (array)      s_pmod_s_string[16]
-* float             f_pmod_value
-* int32_t           n_pmod_value
-* int32_t (array)   an_pmod_value[16]
-* int16_t           w_pmod_value
-* int16_t (array)   aw_pmod_value[16]
-* uint16_t          uw_pmod_value
-* uint16_t (array)  auw_pmod_value[16]
-* uint8_t           uch_pmod_value
-* uint8_t (array)   auch_pmod_buffer[16]
-* uint32_t          un_pmod_value
-* int32_t *         pn_pmod_value
-*
-* ------------------------------------------------------------------------- */
 /*******************************************************************************
 * Copyright (C) 2016 Maxim Integrated Products, Inc., All Rights Reserved.
 *
@@ -91,7 +62,7 @@
 #define REG_PART_ID 0xFF
 
 bool maxim_max30102_init();
-#if defined(ARDUINO_AVR_UNO)
+#if defined(USE_16BIT)
 //Arduino Uno doesn't have enough SRAM to store 100 samples of IR led data and red led data in 32-bit format
 //To solve this problem, 16-bit MSB of the sampled data will be truncated.  Samples become 16-bit data.
 bool maxim_max30102_read_fifo(uint16_t *pun_red_led, uint16_t *pun_ir_led);
